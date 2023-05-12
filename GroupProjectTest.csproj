@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Concert new11-modified.png" />
+    <None Remove="EMAIL1.png" />
+    <None Remove="Exhibition new 115-modified.png" />
+    <None Remove="Gps1.png" />
+    <None Remove="icons8-delete-24.png" />
+    <None Remove="icons8-eye-48.png" />
+    <None Remove="icons8-pencil-drawing-24.png" />
+    <None Remove="Logo try-modified.png" />
+    <None Remove="Orange_Phone_Font-Awesome.svg.png" />
+    <None Remove="party new11-modified.png" />
+    <None Remove="Standup-modified.png" />
+    <None Remove="Telephone.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+    <PackageReference Include="Xceed.Products.Wpf.Toolkit.Full" Version="4.5.23158.1451" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Resource Include="background2.jpg" />
+    <Resource Include="Concert new11-modified.png" />
+    <Resource Include="EMAIL1.png" />
+    <Resource Include="Exhibition new 115-modified.png" />
+    <Resource Include="Gps1.png" />
+    <Resource Include="icons8-delete-24.png" />
+    <Resource Include="icons8-eye-48.png" />
+    <Resource Include="icons8-pencil-drawing-24.png" />
+    <Resource Include="log out.png" />
+    <Resource Include="Logo try-modified.png" />
+    <Resource Include="Orange_Phone_Font-Awesome.svg.png" />
+    <Resource Include="party new11-modified.png" />
+    <Resource Include="Search-removebg-preview.png" />
+    <Resource Include="Standup-modified.png" />
+    <Resource Include="Telephone.png" />
+    <Resource Include="User new.png" />
+  </ItemGroup>
+
+</Project>

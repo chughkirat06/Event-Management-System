@@ -1,0 +1,130 @@
+﻿<Window x:Class="GroupProjectTest.AdminDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GroupProjectTest"
+        mc:Ignorable="d"
+        Title="AdminDashboard" FontSize="20" Height="800" Width="800" Background="#FFECE3F0" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid  Height="70" VerticalAlignment="Top">
+            <Grid.Background>
+                <ImageBrush ImageSource="/background2.jpg"/>
+            </Grid.Background>
+            <Image Source="/log out.png" HorizontalAlignment="Left" Cursor="Hand" MouseLeftButtonDown="Log_Out_Click" Margin="730,15,0,14" Width="44" >
+                <Image.ToolTip>
+                    <ToolTip Content="LogOut"/>
+                </Image.ToolTip>
+
+            </Image>
+            <Image Source="/User new.png"  Cursor="Hand" Margin="660,8,74,8"  Width="50" MouseDown="Account_Dropdown" >
+                <Image.ToolTip>
+                    <ToolTip Content="Settings"/>
+                </Image.ToolTip>
+                <Image.ContextMenu>
+                    <ContextMenu  FontSize="20" FontStyle="Italic" Height="200" Width="220"  Background="White" Foreground="#FFF49E39">
+                        <MenuItem Header="Account Settings" Height="63" FontWeight="DemiBold" Cursor="Hand" Click="AccountSettings"/>
+                        <MenuItem Header="My Tickets"  Height="63" FontWeight="DemiBold" Cursor="Hand" Click="MyTicketsClick"/>
+                        <MenuItem Header="Contact Us"  Height="63" FontWeight="DemiBold" Cursor="Hand" Click="ContactUs"/>
+                    </ContextMenu>
+                </Image.ContextMenu>
+            </Image>
+            <Image Source="/Logo try-modified.png" HorizontalAlignment="Left" Cursor="Hand" Margin="10,2,0,3" MouseLeftButtonDown="HomeClick" />
+            <TextBox Name="SearchBox" TextWrapping="Wrap" Height="40" FontSize="20" Text="" Margin="96,15,160,15" Padding="3" Foreground="#220325" TextChanged="SearchBox_TextChanged"/>
+            <Image Source="/Search-removebg-preview.png" Margin="580,21,165,22" Width="20" />
+
+        </Grid>
+        <TextBlock x:Name="WelcomeMsg"  HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="20 80" FontSize="20" Foreground="Orange" Height="40" />
+
+
+        <Border CornerRadius="20" Margin="40 120 40 40">
+            <Border.Background>
+                <ImageBrush ImageSource="/background2.jpg"/>
+            </Border.Background>
+            <Border.Effect>
+                <DropShadowEffect Direction="225" Color="DarkGray" ShadowDepth="20" BlurRadius="20" />
+            </Border.Effect>
+            <Grid>
+                <Button Name="AddEventButton" Height="60" Width="190" Background="Orange" Foreground="White" Content="Create New Event" FontWeight="Bold" Margin="450 0 0 480" Cursor="Hand" Click="CreateNewEventForm"/>
+            </Grid>
+        </Border>
+        <Grid  Height=" 490" Width="680" Margin="0 190 0 0">
+            <DataGrid Name="EventData" HorizontalGridLinesBrush="#FFE98917" VerticalGridLinesBrush="#FFE98917" GridLinesVisibility="Horizontal" BorderBrush="{x:Null}" Foreground="#FFFAF7F7" FontWeight="Bold" Background="Transparent" RowBackground="Transparent" AutoGenerateColumns="False" ColumnWidth="170" CanUserAddRows="False" IsReadOnly="True" SelectionUnit="FullRow" RowHeaderWidth="0">
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FFE98917" />
+                        <Setter Property="Foreground" Value="#FFFAF7F7" />
+                        <Setter Property="FontWeight" Value="Black" />
+                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        <Setter Property="FontStyle" Value="Italic"/>
+
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="30">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Margin="5"  Background="Transparent" BorderBrush="Transparent" Click="ViewEventForm" Cursor="Hand">
+                                        <Image Source="/icons8-eye-48.png" Height="20"/>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="View"/>
+                                        </Button.ToolTip>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="60">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Margin="5" Width="20"     Background="Transparent" BorderBrush="Transparent" Click="UpdateEventForm" Cursor="Hand">
+                                        <Image Source="/icons8-pencil-drawing-24.png" Height="20"/>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Update"/>
+                                        </Button.ToolTip>
+                                    </Button>
+                                    <Button Margin="5" Width="20"  Background="Transparent" BorderBrush="Transparent" Click="DeleteEvent" Cursor="Hand" >
+                                        <Image Source="/icons8-delete-24.png" Height="20"/>
+                                        <Button.ToolTip>
+                                            <ToolTip Content="Delete"/>
+                                        </Button.ToolTip>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Width="40" />
+                    <DataGridTextColumn Header="Event ID" Binding="{Binding EventID}" Visibility="Hidden" />
+                    <DataGridTextColumn Header="Event Name" Binding="{Binding EventName}" />
+                    <DataGridTextColumn Header="Event Date" Binding="{Binding EventDate}" Width="150" />
+                    <DataGridTextColumn Header="Event Type" Binding="{Binding EventType}" Width="150" />
+
+                    <!-- New column added to the end of the collection -->
+                    <DataGridTemplateColumn Width="70">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Buy" Width="60" HorizontalAlignment="Center" Background="Orange" Foreground="White" Height="30" FontSize="13" Cursor="Hand" Click="Buy_Page"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+
+
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</Window>
